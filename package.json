@@ -4,15 +4,12 @@
     "djs-commander": "^0.0.50",
     "dotenv": "^16.3.1"
   },
-  "name": "iota",
-  "description": "Discord bot aja sih",
-  "version": "1.0.0",
+  "name": "Willson",
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon",
     "start": "node ."
   },
-  "keywords": [],
   "author": "Astera Generation",
   "license": "ISC"
 }

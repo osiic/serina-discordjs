@@ -10,7 +10,6 @@ module.exports = async (message, client, handler) => {
 
   try {
     if (!stickyData) return;
-    console.log(stickyData);
     let cacheChannel = client.channels.cache.get(stickyData.ChannelID);
     const stickyEmbed = new EmbedBuilder().setDescription(stickyData.Message);
 
@@ -18,7 +17,7 @@ module.exports = async (message, client, handler) => {
       stickyData.CurrentCount += 1;
       await stickyData.save();
 
-      if (stickyData.CurrentCount > stickyData.MaxCount) {
+      if (stickyData.CurrentCount >= stickyData.MaxCount) {
         try {
           await client.channels.cache
             .get(stickyData.ChannelID)

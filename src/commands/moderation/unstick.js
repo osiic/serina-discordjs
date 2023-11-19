@@ -1,6 +1,7 @@
 const {
   SlashCommandBuilder,
   EmbedBuilder,
+  ChannelType,
   PermissionFlagsBits,
 } = require("discord.js");
 const { stickySchema } = require("../../schemas/stickySchema");
@@ -9,20 +10,20 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("unstick")
     .setDescription("Remove a stick message!")
-    .addChannelOption((option) =>
-      option
-        .setName("channel")
-        .setDescription("Set Channel to sticky message")
-        .setRequired(false),
-    )
+    // .addChannelOption((option) =>
+    //   option
+    //     .setName("channel")
+    //     .setDescription("Set Channel to sticky message")
+    //     .addChannelTypes(ChannelType.GuildText)
+    //     .setRequired(false),
+    // )
     .setDMPermission(false)
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 
   run: async ({ interaction, client, handler }) => {
     await interaction.deferReply({ ephemeral: true });
 
-    let channel =
-      interaction.options.getChannel("channel") || interaction.channel;
+    let channel = interaction.channel;
 
     try {
       const dataSticky = await stickySchema.findOne({ ChannelID: channel.id });

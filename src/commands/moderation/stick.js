@@ -1,4 +1,8 @@
-const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
+const {
+  SlashCommandBuilder,
+  EmbedBuilder,
+  PermissionFlagsBits,
+} = require("discord.js");
 const { stickySchema } = require("../../schemas/stickySchema");
 
 module.exports = {
@@ -23,8 +27,8 @@ module.exports = {
         .setDescription("Set Channel to sticky message")
         .setRequired(false),
     )
-    .setDMPermission(false),
-  .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages);
+    .setDMPermission(false)
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 
   run: async ({ interaction, client, handler }) => {
     await interaction.deferReply({ ephemeral: true });
@@ -39,8 +43,6 @@ module.exports = {
     try {
       const dataSticky = await stickySchema.findOne({ ChannelID: channel.id });
 
-      console.log(dataSticky);
-
       if (!dataSticky) {
         let msg = await channel.send({ embeds: [embedSticky] });
 
@@ -51,7 +53,7 @@ module.exports = {
           LastMessageID: msg.id,
         });
 
-        return await interaction.editReply({
+        await interaction.editReply({
           content: "The sticky message has been set up",
         });
       } else {

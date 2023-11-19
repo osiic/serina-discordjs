@@ -1,11 +1,16 @@
 require("dotenv").config();
-const { Client, IntentsBitField } = require("discord.js");
+const { Client, GatewayIntentBits } = require("discord.js");
 const { CommandHandler } = require("djs-commander");
 const { mongoConnect } = require("./module/mongoConnect.js");
 const path = require("path");
 
 const client = new Client({
-  intents: [IntentsBitField.Flags.Guilds],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMembers,
+  ],
 });
 
 new CommandHandler({

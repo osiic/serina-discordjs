@@ -21,12 +21,12 @@ module.exports = {
         .setDescription("How frequently you want!")
         .setRequired(false),
     )
-    .addChannelOption((option) =>
-      option
-        .setName("channel")
-        .setDescription("Set Channel to sticky message")
-        .setRequired(false),
-    )
+    // .addChannelOption((option) =>
+    //   option
+    //     .setName("channel")
+    //     .setDescription("Set Channel to sticky message")
+    //     .setRequired(false),
+    // )
     .setDMPermission(false)
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
 
@@ -34,9 +34,8 @@ module.exports = {
     await interaction.deferReply({ ephemeral: true });
 
     let string = interaction.options.getString("message");
-    let amount = interaction.options.getNumber("count");
-    let channel =
-      interaction.options.getChannel("channel") || interaction.channel;
+    let amount = interaction.options.getNumber("count") || 6;
+    let channel = interaction.channel;
 
     const embedSticky = new EmbedBuilder().setDescription(string);
 

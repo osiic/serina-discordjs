@@ -1,6 +1,6 @@
 const { model, Schema } = require("mongoose");
 
-const stickyScheme = new Schema({
+const stickySchema = new Schema({
   Message: { type: String },
   ChannelID: { type: String },
   LastMessage: { type: String },
@@ -10,5 +10,5 @@ const stickyScheme = new Schema({
 });
 
 module.exports = {
-  stickyScheme: model("stickyScheme", stickyScheme),
+  stickySchema: model("stickySchema", stickySchema),
 };

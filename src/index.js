@@ -1,11 +1,14 @@
 require("dotenv").config();
 const { Client, IntentsBitField } = require("discord.js");
 const { CommandHandler } = require("djs-commander");
+const { mongooseConnect } = require("./function/mongoose");
 const path = require("path");
 
 const client = new Client({
   intents: [IntentsBitField.Flags.Guilds], // Your bot's intents
 });
+
+mongooseConnect();
 
 new CommandHandler({
   client, // Discord.js client object | Required by default

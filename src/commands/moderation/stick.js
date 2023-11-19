@@ -1,10 +1,9 @@
 const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
-  devOnly: true,
-  data: new SlashCommandBuilder().setName("kill").setDescription("I kill you!"),
+  data: new SlashCommandBuilder().setName("stick").setDescription("stick!"),
 
   run: ({ interaction, client, handler }) => {
-    interaction.reply(`kill`);
+    interaction.reply(`Pong! ${client.ws.ping}ms`);
   },
 };

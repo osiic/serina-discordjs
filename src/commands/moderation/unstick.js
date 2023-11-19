@@ -32,11 +32,9 @@ module.exports = {
           content: "This channel not has sticky massage!!",
         });
       } else {
-        const stickyChannel = await interaction.client.channels.cache.get(
-          dataSticky.ChannelID,
-        );
-        await stickyChannel.messages
-          .fetch(dataSticky.LastMessageID)
+        interaction.client.channels.cache
+          .get(dataSticky.ChannelID)
+          .messages.fetch(dataSticky.LastMessageID)
           .then(async (m) => {
             await m.delete();
             stickySchema.deleteMany({ ChannelID: channel.id }).then(

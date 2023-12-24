@@ -1,3 +1,3 @@
-# Willson
+# Serina DiscordJS
 
-Discord bot aja sih
+Make bot for serina
